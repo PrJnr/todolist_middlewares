@@ -46,13 +46,13 @@ function checksTodoExists(request, response, next) {
   const { id } = request.params;
 
   const user = users.find((user) => user.username === username);
-  if (!user) return response.status(404).json({ error: 'user not found' });
+  if (!user) return response.status(404).json({ error: 'Usuario não encontrado!' });
 
   const checkUuidIsValid = validate(id);
-  if (!checkUuidIsValid) return response.status(400).json({ error: 'Id invalid' });
+  if (!checkUuidIsValid) return response.status(400).json({ error: 'Id Invalido' });
 
   const todo = user.todos.find(todo => todo.id === id);
-  if (!todo) return response.status(404).json({ error: 'todo not found' });
+  if (!todo) return response.status(404).json({ error: 'Tarefa não encontrada!' });
   
   request.todo = todo;
   request.user = user;
